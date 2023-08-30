@@ -2,17 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap');
 *{ background-color: azure;}
 
-body{
-
-}
 h1{
     text-align: center;
     font-family: 'Libre Baskerville', serif; 
     font-family: 'Playfair Display', serif;
     font-size: xx-large;
-}
-.heading{
-    /* border: 3px solid red; */
 }
 .JokeCategory{
     position: relative;
