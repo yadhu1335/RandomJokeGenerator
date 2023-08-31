@@ -16,7 +16,6 @@ btn.addEventListener("click", getJoke);
 let button= document.getElementById("button_applyfilter");
 
 let customJokes=()=>{
-  console.log("inside customJokes()");
   url="https://v2.jokeapi.dev/joke/";
   let programming=document.getElementById("programming");
   let misc=document.getElementById("misc");
@@ -35,56 +34,33 @@ let customJokes=()=>{
   let bothtype=document.getElementById("bothtype");
   var selectedCategory=[];
   if(!(
-    programming.checked ||
-    misc.checked ||
-    dark.checked ||
-    spooky.checked ||
-    christmas.checked ||
-    pun.checked
-  ))     //checking if any of the checklist boxes has been selected
-  {
-    console.log("Caregories is not selected so adding ANY");
+    programming.checked || misc.checked || dark.checked || spooky.checked || christmas.checked || pun.checked))     //checking if any of the checklist boxes has been selected
     url+="Any";//Adiing Any to url
-  }
 
   if(programming && programming.checked)
-  {
-    console.log("programming=true");
     selectedCategory.push("Programming");
-  }
   
   if(misc&&misc.checked)
-  {  console.log("misc=true");
-    selectedCategory.push("Miscellaneous");  }
+    selectedCategory.push("Miscellaneous");  
   
   if(dark&&dark.checked)
-  {    console.log("dark=true");
-    selectedCategory.push("Dark");}
+    selectedCategory.push("Dark");
     
   if(spooky & spooky.checked)
-  {console.log("spooky=true");
-    selectedCategory.push("Spooky"); }   
+    selectedCategory.push("Spooky");    
 
   if(pun && pun.checked)
-  { console.log("pun=true");
     selectedCategory.push("Pun");
-  }
-  
-  if(christmas & christmas.checked)
-  { console.log("christmas=true");
-    selectedCategory.push("Christmas"); 
-  }
-  url =url + selectedCategory.join(",");
-  
-  console.log("url="+url);
-  getJoke()
 
-  // fetch(url1)
-  //   .then(data => data.json())
-  //   .then(item => {
-  //     jokeContainer.textContent = `${item.joke}`;
-  //     console.log(item)
-  //   });
-  // button.addEventListener("click", customJokes);
+  if(christmas & christmas.checked)
+    selectedCategory.push("Christmas"); //finished filtering categories 
+  url =url + selectedCategory.join(",");
+  if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked||single.checked||twopart.checked||bothtype.checked))
+  url=url+"?";
+
+  console.log(url);
+  
+  getJoke()
+  
 }
 button.addEventListener("click",customJokes);
