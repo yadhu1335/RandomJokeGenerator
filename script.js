@@ -1,11 +1,10 @@
 const jokeContainer = document.getElementById("jokeinhtml");
 const btn = document.getElementById("button-17");
-const url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+let url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
 
 let getJoke = () => {
   fetch(url)
     .then(data => data.json())
-    console.log(data.json)
     .then(item => {
       jokeContainer.textContent = `${item.joke}`;
       console.log(item.joke)
@@ -15,9 +14,10 @@ btn.addEventListener("click", getJoke);
 // getJoke();//ITH CLICK AKKUMBOL ANU FIRST JOKE LOAD AKUKA.
 
 let button= document.getElementById("button_applyfilter");
+
 let customJokes=()=>{
   console.log("inside customJokes()");
-  let url1="https://v2.jokeapi.dev/joke/";
+  url="https://v2.jokeapi.dev/joke/";
   let programming=document.getElementById("programming");
   let misc=document.getElementById("misc");
   let dark=document.getElementById("dark");
@@ -34,19 +34,19 @@ let customJokes=()=>{
   let twopart=document.getElementById("twopart");  
   let bothtype=document.getElementById("bothtype");
   var selectedCategory=[];
-  // if((programming.checked && misc.checked && dark.checked && spooky.checked && christmas.checked && pun.checked)==false)
-  if((
-      programming &&
-      misc &&
-      dark &&
-      spooky &&
-      christmas &&
-      pun
-    ).checked == false)
+  if(!(
+    programming.checked ||
+    misc.checked ||
+    dark.checked ||
+    spooky.checked ||
+    christmas.checked ||
+    pun.checked
+  ))     //checking if any of the checklist boxes has been selected
   {
     console.log("Caregories is not selected so adding ANY");
-    url1+="Any";//Adiing Any to url
+    url+="Any";//Adiing Any to url
   }
+
   if(programming && programming.checked)
   {
     console.log("programming=true");
@@ -74,14 +74,17 @@ let customJokes=()=>{
   { console.log("christmas=true");
     selectedCategory.push("Christmas"); 
   }
-  url1 += selectedCategories.join(",");
+  url =url + selectedCategory.join(",");
   
-  console.log(url1);
-  fetch(url1)
-    .then(data => data.json())
-    .then(item => {
-      jokeContainer.textContent = `${item.joke}`;
-      console.log(item)
-    });
-  button.addEventListener("click", customJokes);
+  console.log("url="+url);
+  getJoke()
+
+  // fetch(url1)
+  //   .then(data => data.json())
+  //   .then(item => {
+  //     jokeContainer.textContent = `${item.joke}`;
+  //     console.log(item)
+  //   });
+  // button.addEventListener("click", customJokes);
 }
+button.addEventListener("click",customJokes);
