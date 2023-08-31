@@ -14,8 +14,10 @@ let getJoke = () => {
 btn.addEventListener("click", getJoke);
 // getJoke();//ITH CLICK AKKUMBOL ANU FIRST JOKE LOAD AKUKA.
 
+let button= document.getElementById("button_applyfilter");
 let customJokes=()=>{
-  let url="https://v2.jokeapi.dev/joke/"
+  console.log("inside customJokes()");
+  let url1="https://v2.jokeapi.dev/joke/";
   let programming=document.getElementById("programming");
   let misc=document.getElementById("misc");
   let dark=document.getElementById("dark");
@@ -32,29 +34,54 @@ let customJokes=()=>{
   let twopart=document.getElementById("twopart");  
   let bothtype=document.getElementById("bothtype");
   var selectedCategory=[];
-  if((programming.checked && misc.checked && dark.checked && spooky.checked && christmas.checked && pun.checked)==false){
+  // if((programming.checked && misc.checked && dark.checked && spooky.checked && christmas.checked && pun.checked)==false)
+  if((
+      programming &&
+      misc &&
+      dark &&
+      spooky &&
+      christmas &&
+      pun
+    ).checked == false)
+  {
     console.log("Caregories is not selected so adding ANY");
-    url+="Any";//Adiing Any to url
+    url1+="Any";//Adiing Any to url
   }
-  if(programming.checked==true)
-    // url+="Dark";
+  if(programming && programming.checked)
+  {
+    console.log("programming=true");
     selectedCategory.push("Programming");
+  }
   
-  if(misc.checked==true)
-    // url+="misc"
-    selectedCategory.push("Miscellaneous");  
+  if(misc&&misc.checked)
+  {  console.log("misc=true");
+    selectedCategory.push("Miscellaneous");  }
   
-  if(dark.checked==true)
-    selectedCategory.push("Dark");
+  if(dark&&dark.checked)
+  {    console.log("dark=true");
+    selectedCategory.push("Dark");}
     
-  if(spooky.checked==true)
-    selectedCategory.push("Spooky");    
+  if(spooky & spooky.checked)
+  {console.log("spooky=true");
+    selectedCategory.push("Spooky"); }   
 
-  if(pun.checked==true)
+  if(pun && pun.checked)
+  { console.log("pun=true");
     selectedCategory.push("Pun");
+  }
   
-  if(christmas.checked==true)
+  if(christmas & christmas.checked)
+  { console.log("christmas=true");
     selectedCategory.push("Christmas"); 
+  }
+  url1 += selectedCategories.join(",");
   
-  url += selectedCategories.join(",");
-  console.log(url);
+  console.log(url1);
+  fetch(url1)
+    .then(data => data.json())
+    .then(item => {
+      jokeContainer.textContent = `${item.joke}`;
+      console.log(item)
+    });
+  button.addEventListener("click", customJokes);
+}

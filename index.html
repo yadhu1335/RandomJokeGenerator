@@ -7,16 +7,59 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="heading">    <h1>Joke Generator</h1>
+    <div class="heading">   
+     <h1>Joke Generator</h1>
     </div>
     <div class="JokeCategory">
         <!-- <h3 id="jokeConainer"></h3> -->
-            <div class="jokepart"><h5 id="jokeinhtml">YOUR LIFE</h5>
+            <div class="jokepart">
+                <h5 id="jokeinhtml">YOUR LIFE</h5>
             </div>
             <div class="button_div">
-        <button class="button-17" type="button" id="button-17">AMUSE ME</button>
-    </div>
-    </div>
+              <button class="button-17" type="button" id="button-17">AMUSE ME</button>
+            </div>
+
+  </div>
+  <div class="filter">
+     <form action="" method="get" name="getFilter">
+      
+      <label>Categories:
+        <div class="selection">
+        <input type="checkbox" id="programming">Programming </input> 
+        <input type="checkbox" id="misc"> Misc </input>
+        <input type="checkbox" id="dark"> Dark </input>
+        <input type="checkbox" id="pun"> Pun </input>
+        <input type="checkbox" id="spooky"> Spooky </input>
+        <input type="checkbox" id="christmas"> Christmas </input>
+        </div>
+      </label><br>  
+      
+      <label>BlackList:
+        <div class="selection">
+        <input type="checkbox" id="nsfw"> NSFW </input> 
+        <input type="checkbox" id="religion"> Religion </input>
+        <input type="checkbox" id="political"> Political </input>
+        <input type="checkbox" id="racist"> Racist </input>
+        <input type="checkbox" id="sexist"> Sexist </input>
+        <input type="checkbox" id="explicit"> Explicit </input>
+        </div>
+      </label><br>
+
+      <label>Type:
+        <div class="selection">
+        <input type="radio" name="type" id="single"> 
+        <label for="Single">Single</label>
+        <input type="radio" name="type" id="twopart"> 
+        <label for="Twopart">Twopart</label>
+        <input type="radio" name="type" id="bothtype"> 
+        <label for="both">Both</label>  
+        </div>
+      </label><br>
+     </form>
+     <div class="button_div">
+        <button class="button_applyfilter" type="button" id="button_applyfilter">APPLY FILTER</button>
+     </div>
+  </div>
     <script src="script.js"></script>
 
 </body>
