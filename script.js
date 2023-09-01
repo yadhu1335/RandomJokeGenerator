@@ -60,11 +60,8 @@ let customJokes=()=>{
   url=url+"?"; //since type will surely be present ? is mandototry so i gave it outside
   if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked))// single.checked||twopart.checked||bothtype.checked))
   {
-    // url=url+"?";
-    // if(nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked)
-    // {
       let selectedFlags=[];
-      url=url+"blacklistFlags=";
+      url=url+"?blacklistFlags=";
       if(nsfw&&nsfw.checked) 
          selectedFlags.push("nsfw");
 
@@ -83,17 +80,25 @@ let customJokes=()=>{
       if(explicit&&explicit.checked)
         selectedFlags.push("explicit");
      url=url+selectedFlags.join(",");
-    // }
-  }
-    if(single.checked||twopart.checked||bothtype.checked)
-    {
-      
-    }
-    else
-    {
-      alert("Select atleast one of the option");
-    }
   
+     url=url+"&type=";
+     if(output=="Single")
+       url=url+"Single";
+     if(output=="Twopart")
+       url=url+"Twopart";
+      if(output=="Both")
+       url = url.replace("&type=", "");
+  }
+  else
+  {
+    url=url+"type="
+    if(output=="Single")
+       url=url+"Single";
+     if(output=="Twopart")
+       url=url+"Twopart";
+      if(output=="Both")
+       url = url.replace("?type=", "");
+  }
    console.log(url);
   
    getJoke()
