@@ -13,7 +13,7 @@
     <div class="JokeCategory">
         <!-- <h3 id="jokeConainer"></h3> -->
             <div class="jokepart">
-                <h5 id="jokeinhtml">YOUR LIFE</h5>
+                <h5 id="jokeinhtml"></h5>
             </div>
             <div class="button_div">
               <button class="button-17" type="button" id="button-17">AMUSE ME</button>
@@ -21,9 +21,10 @@
 
   </div>
   <div class="filter">
+    <p>Filter:</p>
      <form action="" method="get" name="getFilter">
       
-      <label>Categories:
+      <label><h4>Categories:</h4>
         <div class="selection">
         <label><input type="checkbox" id="programming">Programming </input></label> 
         <label><input type="checkbox" id="misc"> Misc </input></label>
@@ -34,7 +35,7 @@
         </div>
       </label><br>  
       
-      <label>BlackList:
+      <label><h4>BlackList:</h4>
         <div class="selection">
         <label><input type="checkbox" id="nsfw"> NSFW </input></label> 
         <label><input type="checkbox" id="religion"> Religion </input></label>
@@ -44,28 +45,14 @@
         <label><input type="checkbox" id="explicit"> Explicit </input></label>
         </div>
       </label><br>
-
-      <!-- <label>Type:
-        <div class="selection">
-        <input type="radio" name="type" id="single">
-         <label for="Single">Single</label>
-        </input>
-        <input type="radio" name="type" id="twopart"> 
-          <label for="Twopart">Twopart</label>
-        </input>
-        <input type="radio" name="type" id="bothtype"> 
-          <label for="both">Both</label>  
-        </input>
-        </div>
-      </label><br> -->
-      <label>Type: &nbsp &nbsp</label>    <!-- &nbsp is to add blank space to the html -->
+      <label><h4>Type: &nbsp &nbsp</h4></label>    <!-- &nbsp is to add blank space to the html -->
         <select id="type">
           <option value="Single" class="single" id="single">Single</option>
           <option value="Twopart" class="twopart" id="twopart">Twopart</option>
           <option value="Both" class="bothtype" id="bothtype">Both</option>
         </select><br><br>
 
-      <label>Language: &nbsp</label>    <!-- &nbsp is to add blank space to the html -->
+      <label><h4>Language: &nbsp</h4></label>    <!-- &nbsp is to add blank space to the html -->
         <select id="lan">
           <option value="en" class="english" id="english">en-English</option>
           <option value="cs" class="czech" id="czech">cs-Czech</option>
@@ -75,10 +62,11 @@
           <option value="pt" class="portuguese" id="portuguese">pt-Portuguese</option>
         </select>
      </form>
-     <div class="button_div">
-        <button class="button_applyfilter" type="button" id="button_applyfilter">APPLY FILTER</button>
+     <div class="button_div1">
+        <button class="button_applyfilter" type="button" id="button_applyfilter">Apply Filter</button>
         <button class="button_reset" type="button" id="button_reset">Reset</button>
      </div>
+      
   </div>
     <script src="script.js"></script>
 
