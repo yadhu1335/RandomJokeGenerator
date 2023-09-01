@@ -32,6 +32,13 @@ button{
 }
 /* The display:grid and margin auto is used to allign the button in the centre of div */
 
+input {
+    background-color: black;
+  }
+  
+  input:checked {
+    background-color: red;
+  }
 
 /* CSS */
 .button-17 {

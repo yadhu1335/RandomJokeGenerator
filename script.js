@@ -29,12 +29,13 @@ let customJokes=()=>{
   let racist=document.getElementById("racist");
   let sexist=document.getElementById("sexist");
   let explicit=document.getElementById("explicit");
-  let single=document.getElementById("single");
-  let twopart=document.getElementById("twopart");  
-  let bothtype=document.getElementById("bothtype");
+  // let single=document.getElementById("single");     //since i changed to dropdown i had to comment these
+  // let twopart=document.getElementById("twopart");  
+  // let bothtype=document.getElementById("bothtype");
+  let selectType = document.querySelector('#type');
+  let output = selectType.value;
   var selectedCategory=[];
-  if(!(
-    programming.checked || misc.checked || dark.checked || spooky.checked || christmas.checked || pun.checked))     //checking if any of the checklist boxes has been selected
+  if(!(programming.checked || misc.checked || dark.checked || spooky.checked || christmas.checked || pun.checked))     //checking if any of the checklist boxes has been selected
     url+="Any";//Adiing Any to url
 
   if(programming && programming.checked)
@@ -55,12 +56,47 @@ let customJokes=()=>{
   if(christmas & christmas.checked)
     selectedCategory.push("Christmas"); //finished filtering categories 
   url =url + selectedCategory.join(",");
-  if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked||single.checked||twopart.checked||bothtype.checked))
-  url=url+"?";
-
-  console.log(url);
   
-  getJoke()
+  url=url+"?"; //since type will surely be present ? is mandototry so i gave it outside
+  if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked))// single.checked||twopart.checked||bothtype.checked))
+  {
+    // url=url+"?";
+    // if(nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked)
+    // {
+      let selectedFlags=[];
+      url=url+"blacklistFlags=";
+      if(nsfw&&nsfw.checked) 
+         selectedFlags.push("nsfw");
+
+      if(religion&&religion.checked)
+        selectedFlags.push("religious");
+
+      if(political&&political.checked)
+        selectedFlags.push("political");
+
+      if(racist&&racist.checked)
+        selectedFlags.push("racist");
+
+      if(sexist&&sexist.checked)
+        selectedFlags.push("sexist");
+
+      if(explicit&&explicit.checked)
+        selectedFlags.push("explicit");
+     url=url+selectedFlags.join(",");
+    // }
+  }
+    if(single.checked||twopart.checked||bothtype.checked)
+    {
+      
+    }
+    else
+    {
+      alert("Select atleast one of the option");
+    }
+  
+   console.log(url);
+  
+   getJoke()
   
 }
 button.addEventListener("click",customJokes);

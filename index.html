@@ -45,16 +45,25 @@
         </div>
       </label><br>
 
-      <label>Type:
+      <!-- <label>Type:
         <div class="selection">
-        <input type="radio" name="type" id="single"> 
-        <label for="Single">Single</label>
+        <input type="radio" name="type" id="single">
+         <label for="Single">Single</label>
+        </input>
         <input type="radio" name="type" id="twopart"> 
-        <label for="Twopart">Twopart</label>
+          <label for="Twopart">Twopart</label>
+        </input>
         <input type="radio" name="type" id="bothtype"> 
-        <label for="both">Both</label>  
+          <label for="both">Both</label>  
+        </input>
         </div>
-      </label><br>
+      </label><br> -->
+      <label>Type: &nbsp</label>    <!-- &nbsp is to add blank space to the html -->
+        <select id="type">
+          <option value="Single" class="single" id="single">Single</option>
+          <option value="Twopart" class="twopart" id="twopart">Twopart</option>
+          <option value="Both" class="bothtype" id="bothtype">Both</option>
+        </select>
      </form>
      <div class="button_div">
         <button class="button_applyfilter" type="button" id="button_applyfilter">APPLY FILTER</button>
