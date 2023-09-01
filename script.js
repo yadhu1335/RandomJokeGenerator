@@ -1,5 +1,6 @@
 const jokeContainer = document.getElementById("jokeinhtml");
 const btn = document.getElementById("button-17");
+let customFiltersApplied=false;
 let url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
 
 let currentJoke;
@@ -28,9 +29,10 @@ let getJoke = () => {
 btn.addEventListener("click", getJoke);
  getJoke();//ITH CLICK AKKUMBOL ANU FIRST JOKE LOAD AKUKA.
 
-let button= document.getElementById("button_applyfilter");
+
 
 let customJokes=()=>{
+  customFiltersApplied = true; 
   url="https://v2.jokeapi.dev/joke/";
   let programming=document.getElementById("programming");
   let misc=document.getElementById("misc");
@@ -164,8 +166,28 @@ if(lanOutput=="pt"||lanOutput=="cs"||lanOutput=="de"||lanOutput=="es"||lanOutput
   }
 }
    console.log(url);
-  
-   getJoke()
-  
-}
+};
+
+const amuseMe = () => {
+  if (customFiltersApplied) {
+    // Fetch jokes with custom filters
+    customJokes();
+    console.log("Fetching jokes with custom filters.");
+  } else {
+    // Fetch random jokes
+    getJoke();
+    console.log("Fetching random jokes.");
+  }
+};
+
+const resetFilters = () => {
+  customFiltersApplied = false; // Reset custom filters
+  url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single"; // Reset the URL
+  console.log("Filters reset.");
+};
+
+let button= document.getElementById("button_applyfilter");
 button.addEventListener("click",customJokes);
+document.getElementById("button_applyfilter").addEventListener("click", customJokes);
+btn.addEventListener("click", amuseMe);
+document.getElementById("button_reset").addEventListener("click", resetFilters);
