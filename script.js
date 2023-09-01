@@ -8,14 +8,15 @@ let getJoke = () => {
     .then(data => data.json())
     .then(item => {
     currentJoke = item;
+    console.log("error="+item.error+"categorie="+item.category);
+    if(item.error==true){
+      jokeContainer.textContent = "No matching jokes found";
+    }
     if (item.type === "twopart")
     {
-      // jokeBox.style.display = "inherit";
-      // jokeDelivery.textContent = ""; 
       jokeContainer.innerHTML = `${item.setup}<br>${item.delivery}`;
-      // jokeContainer.textContent = jokeContainer.textContent+"\n"+`${item.delivery}`;
+ 
       console.log("two type="+item.setup+item.delivery);
-      // btn1.style.display = "inline";
     } 
     else if (item.type === "single")
     {
@@ -52,6 +53,9 @@ let customJokes=()=>{
   // let bothtype=document.getElementById("bothtype");
   let selectType = document.querySelector('#type');
   let output = selectType.value;
+  let selectLan = document.querySelector('#lan');
+  let lanOutput = selectLan.value;
+
   var selectedCategory=[];
   if(!(programming.checked || misc.checked || dark.checked || spooky.checked || christmas.checked || pun.checked))     //checking if any of the checklist boxes has been selected
     url+="Any";//Adiing Any to url
@@ -75,7 +79,9 @@ let customJokes=()=>{
     selectedCategory.push("Christmas"); //finished filtering categories 
   url =url + selectedCategory.join(",");
   
-  url=url+"?"; //since type will surely be present ? is mandototry so i gave it outside
+  if(lanOutput=="en"){
+    console.log("lanoutput="+lanOutput);
+  // url=url+"?"; //since type will surely be present ? is mandototry so i gave it outside
   if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked))// single.checked||twopart.checked||bothtype.checked))
   {
       let selectedFlags=[];
@@ -109,7 +115,7 @@ let customJokes=()=>{
   }
   else
   {
-    url=url+"type="
+    url=url+"?type="
     if(output=="Single")
        url=url+"Single";
      if(output=="Twopart")
@@ -117,6 +123,54 @@ let customJokes=()=>{
       if(output=="Both")
        url = url.replace("?type=", "");
   }
+}
+
+if(lanOutput=="pt"||lanOutput=="cs"||lanOutput=="de"||lanOutput=="es"||lanOutput=="fr"){
+  console.log("lanoutput="+lanOutput);
+
+   url=url+"?lang="+lanOutput; //since type will surely be present ? is mandototry so i gave it outside
+  if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked))// single.checked||twopart.checked||bothtype.checked))
+  {
+      let selectedFlags=[];
+      url=url+"&blacklistFlags=";
+      if(nsfw&&nsfw.checked) 
+         selectedFlags.push("nsfw");
+
+      if(religion&&religion.checked)
+        selectedFlags.push("religious");
+
+      if(political&&political.checked)
+        selectedFlags.push("political");
+
+      if(racist&&racist.checked)
+        selectedFlags.push("racist");
+
+      if(sexist&&sexist.checked)
+        selectedFlags.push("sexist");
+
+      if(explicit&&explicit.checked)
+        selectedFlags.push("explicit");
+     url=url+selectedFlags.join(",");
+  
+     url=url+"&type=";
+     if(output=="Single")
+       url=url+"Single";
+     if(output=="Twopart")
+       url=url+"Twopart";
+      if(output=="Both")
+       url = url.replace("&type=", "");
+  }
+  else
+  {
+    url=url+"&type="
+    if(output=="Single")
+       url=url+"Single";
+     if(output=="Twopart")
+       url=url+"Twopart";
+      if(output=="Both")
+       url = url.replace("&type=", "");
+  }
+}
    console.log(url);
   
    getJoke()
