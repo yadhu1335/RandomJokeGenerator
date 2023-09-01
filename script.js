@@ -20,17 +20,13 @@ let getJoke = () => {
     } 
     else if (item.type === "single")
     {
-      //  btn1.style.display = "none";
        jokeContainer.textContent = `${item.joke}`;
-      //  jokeDelivery.textContent = ""; 
        console.log(item.joke);
     }
-      // jokeContainer.textContent = `${item.joke}`;
-      // console.log(item.joke)
     });
 }
 btn.addEventListener("click", getJoke);
-// getJoke();//ITH CLICK AKKUMBOL ANU FIRST JOKE LOAD AKUKA.
+ getJoke();//ITH CLICK AKKUMBOL ANU FIRST JOKE LOAD AKUKA.
 
 let button= document.getElementById("button_applyfilter");
 
@@ -48,9 +44,6 @@ let customJokes=()=>{
   let racist=document.getElementById("racist");
   let sexist=document.getElementById("sexist");
   let explicit=document.getElementById("explicit");
-  // let single=document.getElementById("single");     //since i changed to dropdown i had to comment these
-  // let twopart=document.getElementById("twopart");  
-  // let bothtype=document.getElementById("bothtype");
   let selectType = document.querySelector('#type');
   let output = selectType.value;
   let selectLan = document.querySelector('#lan');
@@ -81,7 +74,6 @@ let customJokes=()=>{
   
   if(lanOutput=="en"){
     console.log("lanoutput="+lanOutput);
-  // url=url+"?"; //since type will surely be present ? is mandototry so i gave it outside
   if((nsfw.checked||religion.checked||political.checked||racist.checked||sexist.checked||explicit.checked))// single.checked||twopart.checked||bothtype.checked))
   {
       let selectedFlags=[];
