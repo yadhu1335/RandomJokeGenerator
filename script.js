@@ -2,12 +2,30 @@ const jokeContainer = document.getElementById("jokeinhtml");
 const btn = document.getElementById("button-17");
 let url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
 
+let currentJoke;
 let getJoke = () => {
   fetch(url)
     .then(data => data.json())
     .then(item => {
-      jokeContainer.textContent = `${item.joke}`;
-      console.log(item.joke)
+    currentJoke = item;
+    if (item.type === "twopart")
+    {
+      // jokeBox.style.display = "inherit";
+      // jokeDelivery.textContent = ""; 
+      jokeContainer.innerHTML = `${item.setup}<br>${item.delivery}`;
+      // jokeContainer.textContent = jokeContainer.textContent+"\n"+`${item.delivery}`;
+      console.log("two type="+item.setup+item.delivery);
+      // btn1.style.display = "inline";
+    } 
+    else if (item.type === "single")
+    {
+      //  btn1.style.display = "none";
+       jokeContainer.textContent = `${item.joke}`;
+      //  jokeDelivery.textContent = ""; 
+       console.log(item.joke);
+    }
+      // jokeContainer.textContent = `${item.joke}`;
+      // console.log(item.joke)
     });
 }
 btn.addEventListener("click", getJoke);
